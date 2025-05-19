@@ -1,0 +1,7 @@
+dotenv==0.9.9
+pillow==11.2.1
+PyMuPDF==1.25.5
+opencv-python==4.11.0.86
+pytesseract==0.3.13
+
+
