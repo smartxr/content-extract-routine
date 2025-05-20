@@ -103,16 +103,24 @@ def write_content_to_json_file(text_content, target_folder, source_file_name, fi
     for text_chunk in text_chunks:
         chunk_id_ref += 1
 
+        # Build file ID
+        file_id = f"{file_name} Page {page_number_ref} Image {image_index_ref} Chunk {chunk_id_ref}" \
+            if image_index_ref > 0 \
+            else f"{file_name} Page {page_number_ref} Chunk {chunk_id_ref}"
+
         # Build proper JSON file structure
         json_object = {
             "url": source_file_name,
             "filename": file_name,
-            "page_number": page_number_ref,
-            "image_index": image_index_ref,
-            "chunk_id": chunk_id_ref,
+            "filepath": file_id,
+            "page_number": f"{page_number_ref}",
+            "image_index": f"{image_index_ref}",
+            "chunk_id": f"{chunk_id_ref}",
             "title": file_title,
             "content": text_chunk,
             "last_updated": datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S"),
+            "id": encode_filename(file_id),
+            "is_deleted": "0",
             "keywords": "",
             "vectors": "",
         }
